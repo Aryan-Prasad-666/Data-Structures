@@ -108,6 +108,36 @@ class binarytree{
         }
     }
 
+    void height(){
+        System.out.println(heighthelper(this.root));
+    }
+
+    int heighthelper(Node temp){
+        if(temp==null){
+            return 0;
+        }
+
+        int left = heighthelper(temp.left);
+        int right = heighthelper(temp.left);
+
+        return Math.max(left, right)+1;
+    }
+
+    void countnodes(){
+        System.out.println(countnodeshelper(this.root));
+    }
+
+    int countnodeshelper(Node temp){
+        if(temp==null){
+            return 0;
+        }
+
+        int left  = countnodeshelper(temp.left);
+        int right  = countnodeshelper(temp.right);
+
+        return (left+right+1);
+    }
+
 
 }
 
@@ -131,6 +161,9 @@ public class binarytrees{
         System.out.println();
         tree.levelorder();
         System.out.println();
+
+        tree.height();
+        tree.countnodes();
 
     }
 }
