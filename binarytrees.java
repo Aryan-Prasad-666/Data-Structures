@@ -139,11 +139,34 @@ class binarytree{
     }
 
 
+    
+    static boolean comparetrees(Node temp1, Node temp2){
+        if(temp1==null && temp2==null){
+            return true;
+        }
+
+        if((temp1==null && temp2!=null)||(temp1!=null && temp2==null)){
+            return false;
+        }
+
+        if(temp1.data!=temp2.data){
+            return false;
+        }
+
+
+        boolean leftsubtree = comparetrees(temp1.left, temp2.left);
+        boolean rightsubtree = comparetrees(temp1.right, temp2.right);
+
+        return leftsubtree && rightsubtree;
+    }
+
 }
+
 
 public class binarytrees{
     public static void main(String[] args) {
         binarytree tree = new binarytree();
+        binarytree tree1 = new binarytree();
 
         tree.insert(10);
         tree.insert(5);
@@ -152,6 +175,14 @@ public class binarytrees{
         tree.insert(9);
         tree.insert(11);
         tree.insert(12);
+
+        tree1.insert(10);
+        tree1.insert(5);
+        tree1.insert(7);
+        tree1.insert(8);
+        tree1.insert(9);
+        tree1.insert(11);
+        tree1.insert(12);
 
         tree.inorder(tree.root);
         System.out.println();
@@ -164,6 +195,8 @@ public class binarytrees{
 
         tree.height();
         tree.countnodes();
+
+        System.out.println(binarytree.comparetrees(tree.root, tree1.root));
 
     }
 }
