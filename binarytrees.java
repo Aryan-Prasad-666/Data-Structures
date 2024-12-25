@@ -160,6 +160,31 @@ class binarytree{
         return leftsubtree && rightsubtree;
     }
 
+    static int levelordersuccessor(Node temp, int data){
+        if(temp==null){
+            return -1;
+        }
+
+        Queue<Node> q = new LinkedList<>();
+        q.offer(temp);
+        while (!q.isEmpty()) {
+            Node cur = q.poll();
+
+            if(cur.left!=null){
+                q.offer(cur.left);
+            }
+
+            if(cur.right!=null){
+                q.offer(cur.right);
+            }
+
+            if(cur.data==data)
+                break;
+        }
+
+        return q.isEmpty() ?  -1: q.peek().data;
+    }
+
 }
 
 
@@ -198,5 +223,6 @@ public class binarytrees{
 
         System.out.println(binarytree.comparetrees(tree.root, tree1.root));
 
+        System.out.println(binarytree.levelordersuccessor(tree.root, 10));
     }
 }
